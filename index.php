@@ -3,7 +3,7 @@
 require_once ('conf.php');
 require_once ('atlas.php');
 require_once (dirname(__FILE__) . '/codebird-php/src/codebird.php');
-die();
+
 $lang = filter_input(INPUT_GET, 'lang', FILTER_SANITIZE_STRING, FILTER_FLAG_STRIP_LOW);
 $prefix = (in_array($lang, array('en','fr','es'))) ? $lang . '_' : 'en_';
 
