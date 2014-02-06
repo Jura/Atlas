@@ -303,7 +303,8 @@ class Atlas {
     	
     	if (self::$_debug) {
     		echo '<p><b>' . $type . '</b> &rArr; ' . $message .'</p>';
-    	} else if ($type == 'error') { 
+    	} 
+    	if (self::$_debug || $type == 'error') { 
 	    	$db = self::getConnection(); 
 	    	$db->log->insert(array('ts' => new \DateTime(), 'message' => $message, 'type' => $type, 'prefix' => self::$_prefix));    		
     	}
