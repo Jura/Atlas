@@ -7,8 +7,6 @@ require_once ('codebird-php\src\codebird.php');
 $lang = filter_input(INPUT_GET, 'lang', FILTER_SANITIZE_STRING, FILTER_FLAG_STRIP_LOW);
 $prefix = (in_array($lang, array('en','fr','es'))) ? $lang . '_' : 'en_';
 
-//$config = (isset($keys[$lang])) ? $keys[$lang] : $keys['en'];
-
 $atlas = \Atlas\Atlas::getInstance();
 
 // Go away! Allow only whitelisted IPs to access the script

@@ -18,5 +18,5 @@ if (getenv('CRED_FILE')) {
 
 $config['CONFIG']['CONFIG_VARS']['en_searchterm'] = '%23povertymatch+%23donatenow+%40undp';
 $config['CONFIG']['CONFIG_VARS']['en_message'] = 'Thank you for your support to the Philippines! You can make your donation on our website here: http://on.undp.org/teU0U';
-print_r($config);die();
+
 ?>
