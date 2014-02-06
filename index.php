@@ -10,10 +10,10 @@ $prefix = (in_array($lang, array('en','fr','es'))) ? $lang . '_' : 'en_';
 $atlas = \Atlas\Atlas::getInstance();
 
 // Go away! Allow only whitelisted IPs to access the script
-$ips = explode(',', $config['CONFIG']['CONFIG_VARS']['ipwhitelist']);
-if (!in_array($_SERVER['REMOTE_ADDR'], $ips)) {
+/*$ips = explode(',', $config['CONFIG']['CONFIG_VARS']['ipwhitelist']);
+if (!in_array($_SERVER['REMOTE_ADDR'], $ips) ) {
 	$atlas->terminate(403, 'IP ' . $_SERVER['REMOTE_ADDR'] . ' is not allowed');
-}
+}*/
 
 // configure DB connection
 $atlas->getConnection($config['MONGOLAB']['MONGOLAB_URI'], $prefix);
