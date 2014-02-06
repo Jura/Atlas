@@ -2,7 +2,7 @@
 
 require_once ('conf.php');
 require_once ('atlas.php');
-require_once ('codebird-php\src\codebird.php');
+require_once ('lib\codebird.php');
 
 $lang = filter_input(INPUT_GET, 'lang', FILTER_SANITIZE_STRING, FILTER_FLAG_STRIP_LOW);
 $prefix = (in_array($lang, array('en','fr','es'))) ? $lang . '_' : 'en_';
@@ -10,7 +10,8 @@ $prefix = (in_array($lang, array('en','fr','es'))) ? $lang . '_' : 'en_';
 $atlas = \Atlas\Atlas::getInstance();
 
 // Go away! Allow only whitelisted IPs to access the script
-if (!in_array($_SERVER['REMOTE_ADDR'], $config['CONFIG']['CONFIG_VARS']['ipwhitelist'])) {
+$ips = explode(',', $config['CONFIG']['CONFIG_VARS']['ipwhitelist']);
+if (!in_array($_SERVER['REMOTE_ADDR'], $ips)) {
 	$atlas->terminate(403, 'IP ' . $_SERVER['REMOTE_ADDR'] . ' is not allowed');
 }
 

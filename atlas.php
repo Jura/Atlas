@@ -13,6 +13,7 @@ class Atlas {
 	 * MongoDB connection
 	 */
 	private static $_db = null;
+	private static $_con = null;
 	
 	/**
 	 * MongoDB collections prefix
@@ -65,14 +66,14 @@ class Atlas {
      */
     public static function getConnection($uri=null, $prefix='') {
     	if (self::$_db == null) {
-    		$con = new \MongoClient($uri);
+    		self::$_con = new \MongoClient($uri);
+    		//print_r(self::$_con->getConnections());die();
     		$db = explode('/', $uri);
-    		self::$_db = $con->selectDB(end($db));
+    		self::$_db = self::$_con->selectDB(end($db));
     		self::$_prefix = $prefix;
     	}
     	return self::$_db;
     }
-    
     
     /**
      * End request end return HTTP standard code & message
@@ -115,7 +116,10 @@ class Atlas {
      * @return void
      */
     public function shutdown($error_code, $message = null) {
+    	// unlock db 
     	self::unlock();
+    	// close db connection
+    	//self::$_con->close();
     	self::terminate($error_code, $message = null);
     }
     
