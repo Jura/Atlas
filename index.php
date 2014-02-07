@@ -41,7 +41,7 @@ foreach ($authors as $author) {
 	$response = $cb->statuses_update($tweet);
 
 	if ($response->httpstatus != 200) {
-		$atlas->shutdown($response->httpstatus, $response->httpstatus . ': Twitter error ' . $response->errors[0]->message);
+		$atlas->shutdown($response->httpstatus, $response->httpstatus . ': Twitter error ' . $response->error);
 	} else {
 		$atlas->log('Tweet sent: @' . $author['author'],'info');
 		$atlas->markAuthorAsSent($author['author']);
