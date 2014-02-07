@@ -7,8 +7,9 @@ Twitter API should be configured for Read/Write access in order to be able to se
 
 Requires local_conf.php file if not deployed on Cloudcontrol.com
 
-<?php
-$config = array(
+
+     <?php
+     $config = array(
 	'CONFIG' => array(
 		'CONFIG_VARS' => array(
 		
@@ -33,6 +34,6 @@ $config = array(
 	'MONGOLAB' => array(
 		'MONGOLAB_URI' => '' // fully qualified URI, including trailing database name
 	)
-);
-?>
+    );
+    ?>
 
