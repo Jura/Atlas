@@ -17,6 +17,7 @@ if (getenv('CRED_FILE')) {
 	require_once ('local_conf.php');
 }
 
+$config['languages'] = array('en','fr','es');
 $config['CONFIG']['CONFIG_VARS']['en_searchterm'] = '%23povertymatch+%23donatenow+%40undp';
 $config['CONFIG']['CONFIG_VARS']['en_message'] = 'Thank you for your support to the Philippines! You can make your donation on our website here: http://on.undp.org/teU0U';
 $config['CONFIG']['CONFIG_VARS']['es_searchterm'] = '%23povertymatch+%23donatenow+%40pnud';
