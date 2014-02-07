@@ -19,5 +19,9 @@ if (getenv('CRED_FILE')) {
 
 $config['CONFIG']['CONFIG_VARS']['en_searchterm'] = '%23povertymatch+%23donatenow+%40undp';
 $config['CONFIG']['CONFIG_VARS']['en_message'] = 'Thank you for your support to the Philippines! You can make your donation on our website here: http://on.undp.org/teU0U';
+$config['CONFIG']['CONFIG_VARS']['es_searchterm'] = '%23povertymatch+%23donatenow+%40pnud';
+$config['CONFIG']['CONFIG_VARS']['es_message'] = 'Muchas gracias por su apoyo a las Filipinas! Puedes hacer tu donación en nuestra página web: http://on.undp.org/to4Z0';
+$config['CONFIG']['CONFIG_VARS']['fr_searchterm'] = '%23povertymatch+%23donatenow+%40pnud_fr';
+$config['CONFIG']['CONFIG_VARS']['fr_message'] = 'Merci pour votre soutien aux Philippines! Faites un don ici: http://on.undp.org/todQk';
 
 ?>
