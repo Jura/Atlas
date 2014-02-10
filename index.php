@@ -30,24 +30,6 @@ if ($atlas->isLocked()){
 $cb = \Codebird\Codebird::getInstance();
 $cb->setToken($config['CONFIG']['CONFIG_VARS'][$prefix . 'authtoken'], $config['CONFIG']['CONFIG_VARS'][$prefix . 'authsecrettoken']);
 
-// get all authors records ready for sending
-$authors = $atlas->getAuthors();
-
-foreach ($authors as $author) {
-	$tweet = array(
-		'status' => '@' . $author['author'] . ' ' . $config['CONFIG']['CONFIG_VARS'][$prefix . 'message'],
-		'in_reply_to_status_id' => $author['status_id']		
-	);
-	$response = $cb->statuses_update($tweet);
-
-	if ($response->httpstatus != 200) {
-		$atlas->shutdown($response->httpstatus, $response->httpstatus . ': Twitter error ' . $response->error);
-	} else {
-		$atlas->log('Tweet sent: @' . $author['author'],'info');
-		$atlas->markAuthorAsSent($author['author']);
-	}
-}
-
 $searchparams = array(
 	'q' => $config['CONFIG']['CONFIG_VARS'][$prefix . 'searchterm'],
 	'result_type' => 'recent',
@@ -90,6 +72,25 @@ for ($i=0; $i<100; $i++) {
 		if (count($reply->statuses) < 100) {
 			
 			$atlas->log('Search finished','info');
+			
+			// get all authors records ready for sending
+			$authors = $atlas->getAuthors();
+			
+			foreach ($authors as $author) {
+				$tweet = array(
+						'status' => '@' . $author['author'] . ' ' . $config['CONFIG']['CONFIG_VARS'][$prefix . 'message'],
+						'in_reply_to_status_id' => $author['status_id']
+				);
+				$response = $cb->statuses_update($tweet);
+			
+				if ($response->httpstatus != 200) {
+					$atlas->shutdown($response->httpstatus, $response->httpstatus . ': Twitter error ' . $response->error);
+				} else {
+					$atlas->log('Tweet sent: @' . $author['author'],'info');
+					$atlas->markAuthorAsSent($author['author']);
+				}
+			}
+			
 			$atlas->shutdown($reply->httpstatus);
 			
 		} else {

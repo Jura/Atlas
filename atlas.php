@@ -41,7 +41,7 @@ class Atlas {
 	/**
 	 * Debugging mode, whether to dump raw error output to browser
 	 */
-	private static $_debug = true;
+	private static $_debug = false;
 	
 	/**
      * Returns singleton class instance
@@ -89,13 +89,14 @@ class Atlas {
     		$error_code = 500;
     	}
     	
-    	$text = ($message != '') ? $message : self::$_http_codes[$error_code];    	
+    	$text = ($message != '') ? $message : self::$_http_codes[$error_code];
+    	$type = ($error_code > 200) ? 'error' : 'info';	
     	
     	if ($error_code > 200) {
     		header('HTTP/1.1 ' . $error_code . ' ' . self::$_http_codes[$error_code], true, $error_code);
     	}
     	
-    	self::log($error_code . ': ' . $text, 'error');
+    	self::log($error_code . ': ' . $text, $type);
     	
     	if (self::$_debug) {
     		exit();
